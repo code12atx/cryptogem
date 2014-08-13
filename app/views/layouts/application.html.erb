@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head ng-app="cryptogem">
+  <title>Cryptogem</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="header">
+    <a id="logo-container" href="/">
+      <div id="logo">
+        <div class="logo-part">/_\</div>
+        <div class="logo-part">\_/</div>
+      </div>
+      <div id="logo-text">cryptogem</div>
+    </a>
+  </div>
+
+  <div ng-view></div>
+
+</body>
+</html>
