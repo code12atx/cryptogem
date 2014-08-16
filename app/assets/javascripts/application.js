@@ -11,10 +11,5 @@
 // about supported directives.
 //
 //= require angular
-//= require app.js
-//= require controllers.js
-//= require directives.js
-//= require filters.js
-//= require services.js
 //= require turbolinks
 //= require_tree .
