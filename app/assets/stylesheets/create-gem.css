@@ -1,0 +1,12 @@
+#gem-payload {
+  width: 100%;
+  height: 280px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#gem-key {
+  width: 80%;
+}
+#create-gem {
+  float: right;
+}

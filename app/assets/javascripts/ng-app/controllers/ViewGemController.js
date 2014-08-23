@@ -1,4 +1,4 @@
-cryptogem.controller('GemController', function($scope, $routeParams){
-  $scope.name = "GemController";
+cryptogem.controller('ViewGemController', function($scope, $routeParams){
+  $scope.name = "ViewGemController";
   $scope.params = $routeParams;
 });
