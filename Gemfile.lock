@@ -27,7 +27,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    angularjs-rails (1.2.21)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     byebug (3.2.0)
@@ -119,7 +118,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angularjs-rails
   byebug
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
