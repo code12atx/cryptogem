@@ -1,9 +1,13 @@
-<article class="center">
-  1. add text 2. write a secret key 666. click create
-</article>
+<div class="center">
+  <article>
+    1. add text 2. write a secret key 666. click create
+  </article>
 
-<form id="gem-form" class="center" method="post" ng-controller="CreateGemController">
-  <textarea id="gem-payload" required></textarea>
+  <form id="gem-form" autocomplete="off" class="center" method="post" ng-controller="CreateGemController">
+    <textarea id="gem-payload" required></textarea>
+    <button id="create-gem">Create CryptoGem</button>
+  </form>
+  
+  <!-- place outside of the form to stop remember password popup across browser-->
   <input id="gem-key" type="password" placeholder="Write a secret key" required/>
-  <button id="create-gem">Create CryptoGem</button>
-</form>
+</div>
