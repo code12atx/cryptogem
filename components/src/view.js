@@ -2,6 +2,8 @@ var React = require('react');
 var S3 = require('./s3');
 var Encrypt = require('./encrypt');
 
+var Password = require('./password');
+
 var View = React.createClass({
     mixins: [ S3, Encrypt ],
 
@@ -44,8 +46,7 @@ var View = React.createClass({
         return (
             <div>
                 <label>
-                    Password
-                    <input value={this.state.password}
+                    <Password value={this.state.password}
                         onChange={this.handlePasswordChange} />
                 </label>
             </div>

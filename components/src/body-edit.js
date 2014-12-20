@@ -2,6 +2,8 @@ var React = require('react');
 var S3 = require('./s3');
 var Encrypt = require('./encrypt');
 
+var Password = require('./password');
+
 var BodyEdit = React.createClass({
     mixins: [ S3, Encrypt ],
 
@@ -28,9 +30,7 @@ var BodyEdit = React.createClass({
             <div className='body-edit'>
                 <form onSubmit={this.handleSave}>
                     <p>
-                        <label>Password: </label>
-                        <input type='text'
-                            value={this.state.password}
+                        <Password value={this.state.password}
                             onChange={this.handlePasswordChange} />
                         <button>Save</button>
                     </p>
