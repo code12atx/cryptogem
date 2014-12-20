@@ -43,15 +43,18 @@ var View = React.createClass({
     renderPasswordPrompt: function() {
         return (
             <div>
-                <input value={this.state.password}
-                    onChange={this.handlePasswordChange} />
+                <label>
+                    Password
+                    <input value={this.state.password}
+                        onChange={this.handlePasswordChange} />
+                </label>
             </div>
         );
     },
 
     renderContent: function() {
         return (
-            <textarea style={ width: '100%', height: '100%' }>{this.state.content}</textarea>
+            <textarea style={{ width: '100%', height: '100%' }}>{this.state.content}</textarea>
         );
     },
 
