@@ -1,4 +1,6 @@
 *.rbc
+public/index.js
+node_modules
 capybara-*.html
 .rspec
 /log

@@ -1,0 +1,21 @@
+<script src="/view.js"></script>
+
+<link rel="stylesheet"
+  type="text/css"
+  href="/style.css" />
+
+<div class="container">
+</div>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.4.js"></script>
+
+<script>
+  var props = { locator: '<%- key %>' };
+  var el = React.createElement(window.View, props);
+
+  React.render(
+    el,
+    document.getElementsByClassName('container')[0]
+  );
+</script>
+
