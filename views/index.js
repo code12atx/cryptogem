@@ -17,8 +17,6 @@ app.get('/', function(req, res) {
         Index(), {}
     );
 
-    res.header('Access-Control-Allow-Origin', '*');
-
     res.render('index', {
         main: componentString
     });

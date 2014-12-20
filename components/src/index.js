@@ -19,6 +19,7 @@ var Index = React.createClass({
 if (typeof window != 'undefined') {
     window.React = React;
     window.Index = Index;
+    window.sjcl = require('sjcl');
 }
 
 module.exports = Index;

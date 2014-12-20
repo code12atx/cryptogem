@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "cryptogem",
+  "dependencies": {},
+  "devDependencies": {
+    "ejs": "^1.0.0",
+    "express": "^4.10.6",
+    "jsx-loader": "^0.12.2",
+    "lodash": "^2.4.1",
+    "node-jsx": "^0.12.4",
+    "react": "0.12.1",
+    "sjcl": "^1.0.1"
+  }
+}
