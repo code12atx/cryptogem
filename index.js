@@ -4,6 +4,7 @@ var React = require('react');
 var path = require('path');
 require('node-jsx').install();
 
+var s3Credentials = require('./s3-credentials');
 var Index = require('./components/src/index');
 
 app.set('view engine', 'ejs');
@@ -20,6 +21,7 @@ app.get('/', function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
 
     res.render('index', {
+        s3Credentials: JSON.stringify(s3Credentials),
         main: componentString
     });
 });
@@ -28,6 +30,7 @@ app.get('/:key', function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
 
     res.render('view', {
+        s3Credentials: JSON.stringify(s3Credentials),
         key: req.param('key')
     });
 });

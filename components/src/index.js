@@ -9,7 +9,7 @@ var Index = React.createClass({
         return (
             <div>
                 <Navigation />
-                <Body></Body>
+                <Body {...this.props}></Body>
                 <Footer></Footer>
             </div>
         );

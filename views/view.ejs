@@ -10,8 +10,11 @@
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.4.js"></script>
 
 <script>
-  var props = { locator: '<%- key %>' };
-  var el = React.createElement(window.View, props);
+  var props = { };
+  var el = React.createElement(window.View, {
+    locator: '<%- key %>',
+    s3Credentials: <%- s3Credentials %>
+  });
 
   React.render(
     el,

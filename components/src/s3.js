@@ -7,8 +7,8 @@ module.exports = {
         s3.config.credentials = 'us-east-1';
 
         s3.config.update({
-            accessKeyId: 'AKIAICAGAJ3CSF6BWHHQ',
-            secretAccessKey: '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'
+            accessKeyId: this.props.s3Credentials.accessKey,
+            secretAccessKey: this.props.s3Credentials.secretKey,
         });
 
         window.s3 = s3;

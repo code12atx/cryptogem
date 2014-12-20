@@ -1,6 +1,7 @@
 var React = require('react');
 var S3 = require('./s3');
 var Encrypt = require('./encrypt');
+var sha1 = require('sha1');
 
 var Password = require('./password');
 
@@ -69,39 +70,55 @@ var BodyEdit = React.createClass({
     handleSave: function(e) {
         e.preventDefault();
 
-        var contentURL = this.randomName().toString();
-        var locatorURL = this.randomName().toString();
+        var contentURL = sha1(this.state.encrypted);
+        var locatorURL = this.randomName();
         var locator = this.encrypt(
             this.state.password,
             contentURL
         );
 
-        this.upload(locatorURL, locator);
-        this.upload(contentURL, this.state.encrypted);
+        this.uploadLocator(locatorURL, locator);
+        this.uploadContent(contentURL, this.state.encrypted);
         this.setState({
             locatorURL: locatorURL
         });
     },
 
     randomName: function() {
+        var randomNumber = crypto.getRandomValues(new Uint32Array(1))[0];
+        var date = Date.now();
+
+        return sha1(randomNumber * date);
         // TODO: use crypto random
         return Math.round(Math.random() * 10000);
     },
 
-    upload: function(key, value, cb) {
+    uploadContent: function(key, value) {
+        this.upload('cryptogem.content', key, value, function(error, value) {
+            if (error) {
+                throw error;
+            }
+        });
+    },
+
+    uploadLocator: function(key, value) {
+        this.upload('cryptogem.locator', key, value, function(error, value) {
+            if (error) {
+                throw error;
+            }
+        });
+    },
+
+    upload: function(bucket, key, value, cb) {
         var s3 = this.s3();
 
         var params = {
-            Bucket: 'cryptogem',
+            Bucket: bucket,
             Key: key,
             Body: value
         };
 
-        s3.upload(params, function(error) {
-            if (error) {
-                throw(error);
-            }
-        });
+        s3.upload(params, cb);
     },
 });
 

@@ -1,4 +1,5 @@
 *.rbc
+s3-credentials.js
 public/index.js
 public/view.js
 node_modules

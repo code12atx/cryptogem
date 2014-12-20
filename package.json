@@ -1,8 +1,11 @@
 {
   "private": true,
   "name": "cryptogem",
-  "dependencies": {},
+  "dependencies": {
+    "aws-sdk": "^2.1.4"
+  },
   "devDependencies": {
+    "sha1": "^1.1.0",
     "ejs": "^1.0.0",
     "express": "^4.10.6",
     "jsx-loader": "^0.12.2",

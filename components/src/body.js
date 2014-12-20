@@ -6,7 +6,7 @@ var Body = React.createClass({
     render: function() {
         return (
             <div>
-                <BodyEdit />
+                <BodyEdit {...this.props} />
             </div>
         );
     }

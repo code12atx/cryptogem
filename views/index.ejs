@@ -11,8 +11,12 @@
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.4.js"></script>
 
 <script>
+  var el = React.createElement(window.Index, {
+    s3Credentials: <%- s3Credentials %>
+  });
+
   React.render(
-    window.Index(),
+    el,
     document.getElementsByClassName('container')[0]
   );
 </script>
