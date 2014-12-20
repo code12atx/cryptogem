@@ -3,6 +3,7 @@ module.exports = {
 
     entry: {
         index: './index.js',
+        view: './view.js',
     },
 
     output: {

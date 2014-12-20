@@ -1,7 +1,10 @@
 var React = require('react');
-var sjcl = require('sjcl');
+var S3 = require('./s3');
+var Encrypt = require('./encrypt');
 
 var BodyEdit = React.createClass({
+    mixins: [ S3, Encrypt ],
+
     getInitialState: function() {
         return {
             message: '',
@@ -12,6 +15,10 @@ var BodyEdit = React.createClass({
 
     render: function() {
         var encrypted = null;
+
+        if (this.state.locatorURL) {
+            return <a href={'/' + this.state.locatorURL}>Link</a>;
+        }
 
         try {
             encrypted = JSON.parse(this.state.encrypted).ct;
@@ -58,13 +65,8 @@ var BodyEdit = React.createClass({
         });
     },
 
-    encrypt: function(password, message) {
-        return sjcl.encrypt(password, message);
-    },
-
     handleSave: function(e) {
         e.preventDefault();
-        debugger;
 
         var contentURL = this.randomName().toString();
         var locatorURL = this.randomName().toString();
@@ -75,6 +77,9 @@ var BodyEdit = React.createClass({
 
         this.upload(locatorURL, locator);
         this.upload(contentURL, this.state.encrypted);
+        this.setState({
+            locatorURL: locatorURL
+        });
     },
 
     randomName: function() {
@@ -97,22 +102,6 @@ var BodyEdit = React.createClass({
             }
         });
     },
-
-    s3: function() {
-        var s3 = new AWS.S3();
-        s3.config.region = 'us-east-1';
-        s3.config.credentials = 'us-east-1';
-
-        s3.config.update({
-            accessKeyId: 'AKIAICAGAJ3CSF6BWHHQ',
-            secretAccessKey: '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'
-        });
-
-        window.s3 = s3;
-
-        return s3;
-    },
-
 });
 
 module.exports = BodyEdit;

@@ -24,5 +24,14 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/:key', function(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
+
+    res.render('view', {
+        key: req.param('key')
+    });
+});
+
+
 app.listen(8080);
 
