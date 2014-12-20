@@ -28,6 +28,7 @@ var BodyEdit = React.createClass({
             <div className='body-edit'>
                 <form onSubmit={this.handleSave}>
                     <p>
+                        <label>Password: </label>
                         <input type='text'
                             value={this.state.password}
                             onChange={this.handlePasswordChange} />

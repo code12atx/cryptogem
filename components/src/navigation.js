@@ -1,5 +1,4 @@
 var React = require('react');
-
 var Logo = require('./logo');
 
 var Navigation = React.createClass({
