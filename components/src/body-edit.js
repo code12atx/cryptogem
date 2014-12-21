@@ -33,7 +33,6 @@ var BodyEdit = React.createClass({
                     <p>
                         <Password value={this.state.password}
                             onChange={this.handlePasswordChange} />
-                        <button>Save</button>
                     </p>
 
                     <textarea value={this.state.message}
