@@ -2,7 +2,8 @@
   "private": true,
   "name": "cryptogem",
   "dependencies": {
-    "aws-sdk": "^2.1.4"
+    "aws-sdk": "^2.1.4",
+    "elasticsearch": "^3.0.2"
   },
   "devDependencies": {
     "sha1": "^1.1.0",

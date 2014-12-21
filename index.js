@@ -4,7 +4,7 @@ var React = require('react');
 var path = require('path');
 require('node-jsx').install();
 
-var s3Credentials = require('./s3-credentials');
+var s3Credentials = require('./config/s3-credentials');
 var Index = require('./components/src/index');
 
 app.set('view engine', 'ejs');
@@ -36,5 +36,5 @@ app.get('/:key', function(req, res) {
 });
 
 
-app.listen(8080);
+app.listen(8888);
 
