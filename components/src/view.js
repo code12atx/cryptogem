@@ -24,8 +24,17 @@ var View = React.createClass({
                     throw error;
                 }
 
+                var body = data.Body.toString().split('$$');
+                var locator = body[1];
+                var metadata = body[0];
+
+                try {
+                    metadata = JSON.parse(metadata);
+                } catch(e) {}
+
                 this.setState({
-                    locator: data.Body.toString().split('$$')[1]
+                    metadata: metadata,
+                    locator: locator
                 });
 
             }.bind(this)
@@ -43,9 +52,17 @@ var View = React.createClass({
     },
 
     renderPasswordPrompt: function() {
+        var passwordHint = this.state.metadata &&
+            this.state.metadata.passwordHint;
+        var passwordHintLabel = null;
+
+        if (passwordHint) {
+            passwordHintLabel = <span>Hint: {passwordHint}</span>
+        }
         return (
             <div>
                 <label>
+                    {passwordHintLabel}
                     <Password value={this.state.password}
                         onChange={this.handlePasswordChange} />
                 </label>

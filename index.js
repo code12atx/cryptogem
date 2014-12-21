@@ -4,7 +4,7 @@ var React = require('react');
 var path = require('path');
 require('node-jsx').install();
 
-var s3Credentials = require('./config/s3-credentials-client');
+var s3Credentials = require('./config/s3-credentials-client.json');
 var Index = require('./components/src/index');
 
 app.set('view engine', 'ejs');
