@@ -17,7 +17,7 @@ var View = React.createClass({
     componentDidMount: function() {
         this.s3().getObject({
                 Key: this.props.locator,
-                Bucket: 'cryptogem'
+                Bucket: 'cryptogem.locator'
             },
             function(error, data) {
                 if (error) {
@@ -77,10 +77,9 @@ var View = React.createClass({
             if (url) {
                 this.setState({ locatorURL: url });
 
-                debugger;
                 this.s3().getObject({
                     Key: url,
-                    Bucket: 'cryptogem'
+                    Bucket: 'cryptogem.content'
                 }, function(error, data) {
                     if (error) {
                         throw error;
