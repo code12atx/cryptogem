@@ -25,7 +25,7 @@ var View = React.createClass({
                 }
 
                 this.setState({
-                    locator: data.Body.toString()
+                    locator: data.Body.toString().split('$$')[1]
                 });
 
             }.bind(this)

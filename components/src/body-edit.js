@@ -12,7 +12,10 @@ var BodyEdit = React.createClass({
         return {
             message: '',
             encrypted: '',
-            password: ''
+            password: '',
+            showInSearch: false,
+            title: '',
+            passwordHint: ''
         };
     },
 
@@ -35,8 +38,14 @@ var BodyEdit = React.createClass({
                             onChange={this.handlePasswordChange} />
                     </p>
 
-                    <textarea value={this.state.message}
-                        onChange={this.handleMessageChange} />
+                    <p>
+                        {this.renderShowInSearch()}
+                    </p>
+
+                    <p>
+                        <textarea value={this.state.message}
+                            onChange={this.handleMessageChange} />
+                    </p>
 
                     <p className='encrypted-data'>
                         <textarea value={encrypted} />
@@ -44,6 +53,65 @@ var BodyEdit = React.createClass({
                 </form>
             </div>
         );
+    },
+
+    renderShowInSearch: function() {
+        if (this.state.showInSearch) {
+            return (
+                <div>
+                    <label>
+                        Title
+                        <input type='text'
+                            value={this.state.title}
+                            onChange={this.handleTitleChange} />
+                    </label>
+                    <br />
+
+                    <label>
+                        Password Hint
+                        <input type='text'
+                            value={this.state.passwordHint}
+                            onChange={this.handlePasswordHintChange} />
+                    </label>
+                    <br />
+
+
+                    <label>
+                        Show in search
+                        <input type='checkbox'
+                            checked={this.state.showInSearch}
+                            onChange={this.handleShowInSearchChange} />
+                    </label>
+                </div>
+            );
+        } else {
+            return (
+                <label>
+                    Show in search
+                    <input type='checkbox'
+                        checked={this.state.showInSearch}
+                        onChange={this.handleShowInSearchChange} />
+                </label>
+            );
+        }
+    },
+
+    handlePasswordHintChange: function(e) {
+        this.setState({
+            passwordHint: e.target.value
+        });
+    },
+
+    handleTitleChange: function(e) {
+        this.setState({
+            title: e.target.value
+        });
+    },
+
+    handleShowInSearchChange: function(e) {
+        this.setState({
+            showInSearch: e.target.checked
+        });
     },
 
     handleMessageChange: function(e) {
@@ -101,6 +169,15 @@ var BodyEdit = React.createClass({
     },
 
     uploadLocator: function(key, value) {
+        value = '$$' + value;
+
+        if (this.state.showInSearch) {
+            value = JSON.stringify({
+                title: this.state.title,
+                passwordHint: this.state.passwordHint
+            }) + value;
+        }
+
         this.upload('cryptogem.locator', key, value, function(error, value) {
             if (error) {
                 throw error;
