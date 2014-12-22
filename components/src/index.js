@@ -7,9 +7,10 @@ var SearchResults = require('./search-results');
 var Navigation = require('./navigation');
 var Promise = require('bluebird');
 var Request = require('./request')(Promise);
+var SearchRequest = require('./search-request');
 
 var Index = React.createClass({
-    mixins: [ Request ],
+    mixins: [ Request, SearchRequest ],
 
     getDefaultProps: function() {
         return {
@@ -45,13 +46,6 @@ var Index = React.createClass({
                 </div>
             );
         }
-    },
-
-    search: function(string) {
-        return this.props.request(
-            'http://localhost:9200/cryptogem/locator/_search',
-            { q: 'title:' + string + '*' }
-        );
     },
 
     handleSearchChange: function(e) {

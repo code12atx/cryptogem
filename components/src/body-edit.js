@@ -1,12 +1,14 @@
 var React = require('react');
+var sha1 = require('sha1');
+
 var S3 = require('./s3');
 var Encrypt = require('./encrypt');
-var sha1 = require('sha1');
+var SearchRequest = require('./search-request');
 
 var Password = require('./password');
 
 var BodyEdit = React.createClass({
-    mixins: [ S3, Encrypt ],
+    mixins: [ S3, Encrypt, SearchRequest ],
 
     getInitialState: function() {
         return {
@@ -137,12 +139,26 @@ var BodyEdit = React.createClass({
     handleSave: function(e) {
         e.preventDefault();
 
+        if (this.state.showInSearch && this.state.title) {
+            return this.searchGet(this.state.title).then(function() {
+                this.saveTitleNotAvailable();
+            }.bind(this)).catch(function() {
+                this.actuallySave(this.state.title);
+            }.bind(this));
+
+        }
+
+        this.actuallySave();
+    },
+
+    actuallySave: function(locatorURL) {
         var contentURL = sha1(this.state.encrypted);
-        var locatorURL = this.randomName();
+        var locatorURL = locatorURL || this.randomName();
         var locator = this.encrypt(
             this.state.password,
             contentURL
         );
+
 
         this.uploadLocator(locatorURL, locator);
         this.uploadContent(contentURL, this.state.encrypted);
